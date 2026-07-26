@@ -6,7 +6,6 @@ metadata:
   namespace: default
 spec:
   instances: 1
-  image: keycloak/keycloak:26.7
   db:
     vendor: postgres
     host: keycloak-postgres-17-rw

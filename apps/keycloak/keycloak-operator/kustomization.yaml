@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: keycloak-operator
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://github.com/keycloak/keycloak-k8s-resources.git
+  ref:
+    # renovate: datasource=github-tags depName=keycloak/keycloak-k8s-resources
+    tag: 26.4.2
+  ignore: |
+    # exclude all
+    /*
+    # include only the operator
+    !/kubernetes/keycloak.yml

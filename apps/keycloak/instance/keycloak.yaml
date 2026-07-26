@@ -1,0 +1,39 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: default
+spec:
+  instances: 1
+  image: keycloak/keycloak:26.7
+  db:
+    vendor: postgres
+    host: keycloak-postgres-17-rw
+    usernameSecret:
+      name: keycloak-postgres-17-app
+      key: username
+    passwordSecret:
+      name: keycloak-postgres-17-app
+      key: password
+  http:
+    httpEnabled: true
+  hostname:
+    hostname: auth.dev.pregmatch.org
+  proxy:
+    headers: xforwarded
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      #external-dns.alpha.kubernetes.io/target: 217.148.11.208
+    className: nginx
+    tlsSecret: dev-sso-topax-gemdat-versicherung-tls
+  additionalOptions:
+    - name: metrics-enabled
+      value: 'true'
+    - name: proxy
+      value: "edge"
+    - name: log-level
+      value: "info,org.keycloak.protocol.oidc:debug"

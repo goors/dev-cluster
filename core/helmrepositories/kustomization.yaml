@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cloudnative-pg.yaml
+  - external-dns.yaml
+  - grafana.yaml
+  - ingress-nginx.yaml
+  - jetstack.yaml
+  - k8up-io.yaml
+  - minio.yaml
+  - oauth2-proxy.yaml
+  - prometheus-community.yaml
+  - stakater.yaml
+  - traefik.yaml
+  - ww-gitops.yaml

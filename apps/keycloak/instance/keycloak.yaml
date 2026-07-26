@@ -36,4 +36,6 @@ spec:
       value: "edge"
     - name: log-level
       value: "info,org.keycloak.protocol.oidc:debug"
+    - name: features
+      value: "organization"
   startOptimized: false
